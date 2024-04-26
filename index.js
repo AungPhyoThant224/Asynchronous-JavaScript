@@ -1,12 +1,18 @@
 console.log("Before");
-getUser(1, (user) => {
-    getRepositories(user.gitHubUsername, (repo) => {
-        getCommits(repo.repositories[0], (commit) => {
-            //CALLBACK HELL = Nested callback functions
-        })
-    });
-});
+getUser(1, getRepositories);
 console.log("After");
+
+function getRepositories(user) {
+    getRepositories(user.gitHubUsername, getCommits)
+}
+
+function getCommits(repos) {
+    getCommits(repos.repositories[0], displayCommit);
+}
+
+function displayCommit(commits) {
+    console.log(commits);
+}
 
 function getUser(id, callback) {
     setTimeout(() => {
