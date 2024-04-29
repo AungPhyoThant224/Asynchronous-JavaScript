@@ -1,12 +1,12 @@
 console.log("Before");
-getUser(1, getRepositories);
+getUser(1, getRepos);
 console.log("After");
 
-function getRepositories(user) {
-    getRepositories(user.gitHubUsername, getCommits)
+function getRepos(user) {
+    getRepositories(user.gitHubUsername, getCommit)
 }
 
-function getCommits(repos) {
+function getCommit(repos) {
     getCommits(repos.repositories[0], displayCommit);
 }
 
